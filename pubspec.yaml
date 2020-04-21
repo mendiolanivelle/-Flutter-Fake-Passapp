@@ -57,11 +57,15 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: norm
+    - family: normReg
       fonts:
         - asset: asset/font/TTNorms-Regular.otf
-        - asset: asset/fonts/TTNorms-Medium.otf
-          style: medium
+    
+    - family: normMed
+      fonts:
+        - asset: asset/font/TTNorms-Medium.otf
+
+  
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

@@ -9,7 +9,7 @@ void main() => runApp(MaterialApp
   routes: 
   {
     '/' : (context) => Loading(),
-    'home' : (context) => Home(),
-    'Signup' : (context) => Signup()
+    '/home' : (context) => Home(),
+    '/Signup' : (context) => Signup()
   },
 ));
