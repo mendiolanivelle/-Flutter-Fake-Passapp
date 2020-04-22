@@ -7,6 +7,10 @@ class Signup extends StatefulWidget {
 class _SignupState extends State<Signup> {
   @override
   Widget build(BuildContext context) {
+
+    List <String> headerNumber = ['+63'];
+    String inputnumbertip = 'Enter Phone Number';
+
     return Scaffold(
       backgroundColor: Colors.white,
 
@@ -48,27 +52,75 @@ class _SignupState extends State<Signup> {
               SizedBox(
               width: 300,
               height: 45,
-               child:Row
-                (
-                  children: <Widget>
-                  [
-                    Text('mendiola'),
-
-                    Flexible
-                    (
-                      child: TextField
-                      (
-                        decoration: InputDecoration
+               child:Container(
+                 decoration: BoxDecoration
+                 (
+                   border: Border.all(color: Colors.grey),
+                   borderRadius: BorderRadius.all(Radius.circular(2))
+                 ),
+                 
+                 child: Row
+                  (
+                    children: <Widget>
+                    [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+                        child: DropdownButton<String>
                         (
-                          enabledBorder: OutlineInputBorder
-                          (
-                            borderSide: BorderSide(color: Colors.black)
-                          )
+                          iconDisabledColor: Colors.black,
+                          hint: Text('+63',style: TextStyle(color: Colors.black),),
+                          items: headerNumber.map((String dropDownString) 
+                          {
+                            return DropdownMenuItem
+                            (
+                              value: dropDownString,
+                              child:Text(dropDownString),
+
+
+                            );
+                          }).toList(),
+
+                          
+                          value: '+63',
+                          
+
                         ),
-                      )
                       ),
-                  ],
-                ),
+                      VerticalDivider
+                      (
+                        width: 20,
+                        thickness: 1,
+                        indent: 6,
+                        endIndent: 6,
+                      ),
+
+                      Flexible
+                      (
+                        child: TextField
+                        (
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration
+                          (
+                            hintText: ('Enter Phone Number'),
+                            border: InputBorder.none,
+                            focusedBorder: InputBorder.none,
+                            enabledBorder: InputBorder.none,
+                            errorBorder: InputBorder.none,
+                            disabledBorder: InputBorder.none,
+
+                          ),
+                          onTap: ()
+                          {
+                            setState(() {
+                              inputnumbertip = '';
+                            });
+                            
+                          },
+                        )
+                        ),
+                    ],
+                  ),
+               ),
               ), 
               SizedBox(height: 80,),
               ButtonTheme
