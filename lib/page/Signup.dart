@@ -1,16 +1,28 @@
 import 'package:flutter/material.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 class Signup extends StatefulWidget {
   @override
   _SignupState createState() => _SignupState();
 }
+
+
 
 class _SignupState extends State<Signup> {
   @override
   Widget build(BuildContext context) {
     List<String> headerNumber = ['+63'];
 
+_launchURL() async {
+  const url = 'https://passapp.ph/registrations_page';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: Center(
         child: Padding(
@@ -108,7 +120,10 @@ class _SignupState extends State<Signup> {
               SizedBox(height: 20,),
               GestureDetector
               (
-                onTap: () {},
+                onTap: () 
+                {
+                  _launchURL();
+                },
                 child: Text('Sign Up',style: TextStyle(fontFamily: 'normMed',fontSize: 19,decoration: TextDecoration.underline),),
               ),
               SizedBox(height: 100,),
