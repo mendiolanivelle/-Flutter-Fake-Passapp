@@ -65,6 +65,10 @@ flutter:
       fonts:
         - asset: asset/font/TTNorms-Medium.otf
 
+    - family: KamberBold
+      fonts:
+        - asset: asset/font/Kamber-Bold.ttf
+
   
   #
   # For details regarding fonts from package dependencies,
