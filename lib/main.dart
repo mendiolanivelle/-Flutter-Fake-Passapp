@@ -7,15 +7,15 @@ import 'page/Home.dart';
 import 'page/Signup.dart';
 
 void main() => runApp(MaterialApp(
-      initialRoute: '/',
+      initialRoute: '/home',
       routes: {
         '/': (context) => Loading(),
         '/home': (context) => Home(),
-        '/Signup': (context) {
-          return BlocProvider(
-            create: (context) => LoginBloc(),
-            child: Signup(),
-          );
-        }
+        // '/Signup': (context) {
+        //   return BlocProvider(
+        //     create: (context) => LoginBloc(),
+        //     child: Signup(),
+        //   );
+        // }
       },
     ));

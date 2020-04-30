@@ -14,15 +14,28 @@ class _SignupState extends State<Signup> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
-      body: BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
-        if (state is LoginInitial) {
-          return buildInitial(context);
-        } else if (state is LoginCorrectNumber) {
-          return buildmoveToHome(context);
-        } else if (state is LoginInvalidNumber) {
-          return buildInvalidNumber(context);
-        }
-      }),
+      body: Container(
+        child: BlocListener<LoginBloc, LoginState>(
+          listener: (context, state) {
+            if (state is LoginCorrectNumber) {
+              Navigator.of(context).pushReplacementNamed('/home');
+            } else if (state is LoginInvalidNumber) {
+              Scaffold.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('Account Doesnt Exist'),
+                ),
+              );
+            }
+          },
+          child: BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
+            if (state is LoginInitial) {
+              return buildInitial(context);
+            } else {
+              return Center(child: CircularProgressIndicator());
+            }
+          }),
+        ),
+      ),
     );
   }
 }
@@ -168,7 +181,7 @@ Widget buildInitial(BuildContext context) {
             height: 100,
           ),
           Text(
-            'V 1.0.1.13',
+            'V 1.0.1.15',
             style: TextStyle(
                 fontFamily: 'normMed',
                 fontWeight: FontWeight.w900,
@@ -180,10 +193,6 @@ Widget buildInitial(BuildContext context) {
   );
 }
 
-Widget buildmoveToHome(BuildContext context) {
-  return NavigateToHome();
-}
-
 Widget buildInvalidNumber(BuildContext context) {
   return AlertDialog(
     title: Text('invalid number'),
@@ -193,13 +202,4 @@ Widget buildInvalidNumber(BuildContext context) {
 void triggerLoginButton(BuildContext context, String number) {
   final accountBloc = BlocProvider.of<LoginBloc>(context);
   accountBloc.add(OnclickLogin(number));
-}
-
-class NavigateToHome extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    Navigator.pushReplacementNamed(context, '/home');
-
-    return CircularProgressIndicator();
-  }
 }

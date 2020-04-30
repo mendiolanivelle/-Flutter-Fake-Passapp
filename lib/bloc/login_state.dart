@@ -11,12 +11,10 @@ class LoginInitial extends LoginState {
 
 class LoginCorrectNumber extends LoginState {
   @override
-  // TODO: implement props
   List<Object> get props => null;
 }
 
 class LoginInvalidNumber extends LoginState {
   @override
-  // TODO: implement props
   List<Object> get props => null;
 }
