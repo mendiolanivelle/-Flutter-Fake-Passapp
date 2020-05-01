@@ -18,7 +18,7 @@ class _SignupState extends State<Signup> {
         child: BlocListener<LoginBloc, LoginState>(
           listener: (context, state) {
             if (state is LoginCorrectNumber) {
-              Navigator.of(context).pushReplacementNamed('/home');
+              transitionToHome(context);
             } else if (state is LoginInvalidNumber) {
               Scaffold.of(context).showSnackBar(
                 SnackBar(
@@ -202,4 +202,9 @@ Widget buildInvalidNumber(BuildContext context) {
 void triggerLoginButton(BuildContext context, String number) {
   final accountBloc = BlocProvider.of<LoginBloc>(context);
   accountBloc.add(OnclickLogin(number));
+}
+
+void transitionToHome(BuildContext context) async {
+  await Future.delayed(Duration(seconds: 3));
+  Navigator.of(context).pushReplacementNamed('/home');
 }
